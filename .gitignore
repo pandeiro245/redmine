@@ -45,3 +45,7 @@
 
 /node_modules
 yarn-error.log
+
+# Original
+.c9
+.env
