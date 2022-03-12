@@ -95,6 +95,10 @@ class IssuesController < ApplicationController
   def show
     @journals = @issue.visible_journals_with_index
     @has_changesets = @issue.changesets.visible.preload(:repository, :user).exists?
+    if session[:title] != @issue.subject
+      session[:title] = @issue.subject
+      @issue.start(User.current.timecrowd_user_id, request.host)
+    end
     @relations =
       @issue.relations.
         select do |r|
