@@ -1661,6 +1661,12 @@ class Issue < ActiveRecord::Base
     end
   end
 
+  # Original
+  def start(user_id, host)
+    url = "https://#{host}/issues/#{id}"
+    Timecrowd.new.start(user_id, subject, url)
+  end
+
   private
 
   def user_tracker_permission?(user, permission)
